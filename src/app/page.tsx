@@ -1,8 +1,10 @@
-import Homepage from "./components/Homepage";
-
+"use client"
+import Homepage from "./pages/homepage";
 
 export default function Home() {
   return (
-    <Homepage/>
+    <div className="min-h-screen">
+      <Homepage/>
+    </div>
   );
 }

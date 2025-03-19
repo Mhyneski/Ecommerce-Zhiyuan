@@ -1,16 +1,17 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Bodoni_Moda, Cinzel } from "next/font/google";
 import "./globals.css";
-import Nav from "./components/Nav";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+
+const cinzel = Cinzel({
+  variable: "--font-cinzel",
   subsets: ["latin"],
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const bodoni = Bodoni_Moda({
+  variable: "--font-bodoni",
   subsets: ["latin"],
+  style: ["italic"],
 });
 
 export const metadata: Metadata = {
@@ -26,9 +27,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${cinzel.variable} ${bodoni.variable} antialiased`}
       >
-        <Nav/>
+
         {children}
       </body>
     </html>

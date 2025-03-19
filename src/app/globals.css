@@ -2,9 +2,6 @@
 
 @theme {
     --color-cosmos: #49111C;
-    --color-walnut: #5E503F;
+    --color-subtext: #0b3452;
   }
 
-body {
-    background-color: #F2F4F3;
-}
