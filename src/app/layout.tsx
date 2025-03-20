@@ -1,15 +1,15 @@
 import type { Metadata } from "next";
-import { Bodoni_Moda, Cinzel } from "next/font/google";
+import { Bodoni_Moda, Cinzel, DM_Sans, Roboto } from "next/font/google";
 import "./globals.css";
 
 
-const cinzel = Cinzel({
-  variable: "--font-cinzel",
+const roboto = Roboto({
+  variable: "--font-roboto",
   subsets: ["latin"],
 });
 
-const bodoni = Bodoni_Moda({
-  variable: "--font-bodoni",
+const bodoni = DM_Sans({
+  variable: "--font-dm-sans",
   subsets: ["latin"],
   style: ["italic"],
 });
@@ -27,7 +27,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${cinzel.variable} ${bodoni.variable} antialiased`}
+        className={`${roboto.variable} ${bodoni.variable} antialiased`}
       >
 
         {children}
