@@ -1,4 +1,6 @@
 import React from 'react';
+import { motion } from "framer-motion";
+import { fadeIn } from "../../framerMotion/variants";
 
 const Details = [
   {
@@ -26,9 +28,8 @@ const Details = [
 
 export default function About() {
   return (
-    <div className="relative min-h-screen flex flex-col items-center">
+    <div className="relative min-h-screen flex flex-col items-center pt-17">
       <img src="../images/rack.png" className='w-470 absolute -right-223 -top-105' alt="rack" />
-      <div className="h-[80px] bg-subtext w-full"></div>
       <h1 className="text-center text-5xl mt-20 text-white">ABOUT US</h1>
       <div className="grid grid-cols-1 md:grid-cols-12 gap-35 -ml-93 mt-35 max-w-6xl px-4">
         {Details.map((detail, index) => (
