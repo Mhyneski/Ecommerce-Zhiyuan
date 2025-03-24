@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Bodoni_Moda, Cinzel, DM_Sans, Roboto } from "next/font/google";
+import { Antonio, Bodoni_Moda, Cinzel, DM_Sans, Roboto } from "next/font/google";
 import "./globals.css";
 
 
@@ -11,7 +11,11 @@ const roboto = Roboto({
 const bodoni = DM_Sans({
   variable: "--font-dm-sans",
   subsets: ["latin"],
-  style: ["italic"],
+});
+
+const antonio = Antonio ({
+  variable: "--font-antonio",
+  subsets: ["latin"],
 });
 
 export const metadata: Metadata = {
@@ -27,7 +31,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${roboto.variable} ${bodoni.variable} antialiased`}
+        className={`${roboto.variable} ${bodoni.variable} ${antonio.variable} antialiased`}
       >
 
         {children}
