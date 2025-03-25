@@ -49,13 +49,13 @@ export default function Aboutpage() {
   return (
     <motion.div
       id='about'
-      className="relative min-h-screen flex flex-col items-center pt-17"
+      className="relative min-h-screen flex flex-col items-center pt-17 "
     >
 
 
       <motion.img
         src="/images/rack.png"
-        className="w-[5000px] absolute left-[900px] -top-[460px] rotate-3"
+        className="w-[4000px] absolute left-[900px] -top-[460px] rotate-3"
         alt="rack"
         variants={rackVariants}
         initial="hidden"

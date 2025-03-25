@@ -6,7 +6,8 @@ import { PiHeadset } from "react-icons/pi";
 import { CiFacebook } from "react-icons/ci";
 import { RiTiktokLine } from "react-icons/ri";
 import { FaInstagram } from "react-icons/fa";
-import {motion} from "framer-motion"
+import { motion } from "framer-motion"
+import { fadeIn } from "../../framerMotion/variants";
 
 const Details = [
     {
@@ -23,7 +24,7 @@ TAGUIG, PHILIPPINES`
         title: "WORKING HOURS",
         description: `MONDAY TO SUNDAY 
 `,
-number: "8AM - 7PM"
+        number: "8AM - 7PM"
     },
     {
         design: "p-4 pl-9 pt-5 absolute shadow-2xl drop-shadow-[0_35px_35px_rgba(0,0,0,0.3)] -right-84 top-10 rounded-4xl bg-[linear-gradient(90deg,#000000,#1584bb)] h-[250px] w-[349px]",
@@ -39,9 +40,23 @@ export default function Contactpage() {
         <div id="contact" className="h-screen w-full flex flex-col">
             <div className="relative h-[90vh] flex items-center p-4 pt-12">
                 <div className="relative flex justify-center w-[900px] z-1">
-                <div className="absolute -top-20 -left-13 right-0 rounded-full bg-[linear-gradient(90deg,#000000,#1584bb)] h-[280px] w-[280px] -z-1"></div>
-                <div className="absolute -bottom-15 right-10 rounded-full bg-[linear-gradient(90deg,#000000,#1584bb)] h-[180px] w-[180px] -z-1"></div>
-                    <iframe
+                    <motion.div 
+                    variants={fadeIn("up", 0)}
+                    initial="hidden"
+                    whileInView="show"
+                    viewport={{ once: false, amount: 0.1 }}
+                    className="absolute -top-20 -left-13 right-0 rounded-full bg-[linear-gradient(90deg,#000000,#1584bb)] h-[280px] w-[280px] -z-1"></motion.div>
+                    <motion.div
+                    variants={fadeIn("up", 0)}
+                    initial="hidden"
+                    whileInView="show"
+                    viewport={{ once: false, amount: 0.1 }} 
+                    className="absolute -bottom-15 right-10 rounded-full bg-[linear-gradient(90deg,#000000,#1584bb)] h-[180px] w-[180px] -z-1"></motion.div>
+                    <motion.iframe
+                    variants={fadeIn("down", 0)}
+                    initial="hidden"
+                    whileInView="show"
+                    viewport={{ once: false, amount: 0.1 }} 
                         src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3861.8198800561004!2d121.0537008!3d14.5522906!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3397c907d9601225%3A0x8495ad7d16ee750c!2sAlveo%20Park%20Triangle%20Tower!5e0!3m2!1sen!2sph!4v1742818377087!5m2!1sen!2sph"
                         width="650"
                         height="550"
@@ -49,38 +64,53 @@ export default function Contactpage() {
                         allowFullScreen
                         loading="lazy"
                         referrerPolicy="no-referrer-when-downgrade"
-                    ></iframe>
+                    ></motion.iframe>
                 </div>
                 <div className="absolute text-3xl opacity-50 shadow-2xl  top-30 rounded-full right-220 text-white font-bold" style={{ fontFamily: "var(--font-antonio)" }}>CONTACT US</div>
 
                 {/* bottom left circle */}
-                <div className="absolute -bottom-9 -left-5 rounded-full bg-[linear-gradient(90deg,#000000,#1584bb)] h-[120px] w-[120px] z-1"></div>
+                <motion.div 
+                variants={fadeIn("down", 0)}
+                initial="hidden"
+                whileInView="show"
+                viewport={{ once: false, amount: 0.1 }}
+                className="absolute -bottom-9 -left-5 rounded-full bg-[linear-gradient(90deg,#000000,#1584bb)] h-[120px] w-[120px] z-1"></motion.div>
 
                 {/*top right circle */}
-                <div className="absolute right-19 -top-11 rounded-full bg-[linear-gradient(90deg,#000000,#1584bb)] h-[120px] w-[120px] z-1"></div>
+                <motion.div 
+                variants={fadeIn("up", 0)}
+                initial="hidden"
+                whileInView="show"
+                viewport={{ once: false, amount: 0.1 }}
+                className="absolute right-19 -top-11 rounded-full bg-[linear-gradient(90deg,#000000,#1584bb)] h-[120px] w-[120px] z-1"></motion.div>
 
-                <div className="flex relative items-center h-[500px] w-[500px] justify-center">
+                <motion.div
+                variants={fadeIn("left", 0)}
+                initial="hidden"
+                whileInView="show"
+                viewport={{ once: false, amount: 0.1 }} 
+                className="flex relative items-center h-[500px] w-[500px] justify-center">
                     {Details.map((details, index) => (
-                        <div 
-                        key={index} className={details.design}>
+                        <div
+                            key={index} className={details.design}>
                             {details.svg}
                             <h1 className="text-white font-bold pt-2 mt-2 mb-2" style={{ fontFamily: "var(--font-roboto)" }}>{details.title}</h1>
                             <p className="pt-5 text-white" style={{ fontFamily: "var(--font-roboto)" }}>{details.description}</p>
                             <p className="text-white" style={{ fontFamily: "var(--font-roboto)" }}>{details.number}</p>
                         </div>
                     ))}
-                </div>
+                </motion.div>
             </div>
             <footer className="h-[10vh] bg-[linear-gradient(90deg,#000000,#1584bb)] flex justify-between relative z-2">
-                    <p className=" text-white uppercase pl-20 pt-4 text-2xl " style={{ fontFamily: "var(--font-dm-sans)" }}>Get in touch with us</p>
-                    <div className="flex flex-col pr-13 pt-3">
-                        <p className="text-white text-2xl" style={{ fontFamily: "var(--font-dm-sans)" }}>FOLLOW US</p>
-                        <div className="flex pt-1 gap-2">
-                            <CiFacebook className="text-white" size={20}/>
-                            <RiTiktokLine className="text-white"  size={20}/>
-                            <FaInstagram className="text-white"  size={20}/>
-                        </div>
+                <p className=" text-white uppercase pl-20 pt-4 text-2xl " style={{ fontFamily: "var(--font-dm-sans)" }}>Get in touch with us</p>
+                <div className="flex flex-col pr-13 pt-3">
+                    <p className="text-white text-2xl" style={{ fontFamily: "var(--font-dm-sans)" }}>FOLLOW US</p>
+                    <div className="flex pt-1 gap-2">
+                        <CiFacebook className="text-white" size={20} />
+                        <RiTiktokLine className="text-white" size={20} />
+                        <FaInstagram className="text-white" size={20} />
                     </div>
+                </div>
             </footer>
         </div>
     );
