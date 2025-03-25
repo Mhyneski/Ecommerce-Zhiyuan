@@ -99,7 +99,7 @@ export default function Navbar() {
                 <Link
                   to={item.loc}
                   className={`text-white text-lg font-medium cursor-pointer px-3 py-1 rounded-md transition-colors duration-300 ${
-                    active === item.title ? 'bg-gray-600 bg-opacity-50' : 'hover:bg-gray-600 hover:bg-opacity-30'
+                    active === item.title ? 'bg-gray-300/50' : 'hover:bg-gray-300/70 transition-all duration-400 ease-in-out'
                   }`}
                   onClick={() => setActive(item.title)}
                   smooth={true} 
