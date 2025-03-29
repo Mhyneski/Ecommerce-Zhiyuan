@@ -11,24 +11,24 @@ import { fadeIn } from "../../framerMotion/variants";
 
 const Details = [
     {
-        design: "p-4 pl-9 pt-5 absolute shadow-2xl drop-shadow-[0_35px_35px_rgba(0,0,0,0.3)] top-17 left-0 rounded-4xl bg-[linear-gradient(90deg,#000000,#1584bb)] h-[250px] w-[349px] z-2",
-        svg: <CiLocationOn size={30} className="text-white" />,
+        design:"p-4 md:p-4 md:pl-9 md:pt-5 lg:absolute shadow-2xl drop-shadow-[0_35px_35px_rgba(0,0,0,0.3)] lg:top-17 lg:left-0 rounded-4xl bg-[linear-gradient(90deg,#000000,#1584bb)] w-[350px] h-[250px] md:h-[250px] md:w-[349px] z-2",
+        svg: <CiLocationOn size={30} className="text-white hidden lg:block" />,
         title: "OFFICE LOCATION",
         description: `10TH FLOOR ALVEO PARK TRIANGLE TOWER,
 32ND STREET CORNER 11TH AVENUE, BONIFACIO GLOBAL CITY, 
 TAGUIG, PHILIPPINES`
     },
     {
-        design: "p-4 pl-9 pt-5 absolute shadow-2xl drop-shadow-[0_35px_35px_rgba(0,0,0,0.3)] -bottom-7 left-81 rounded-4xl bg-[linear-gradient(90deg,#000000,#1584bb)] h-[250px] w-[349px] z-1",
-        svg: <CiClock2 size={30} className="text-white" />,
+        design: "p-4 md:p-4 md:pl-9 md:pt-5 lg:absolute shadow-2xl drop-shadow-[0_35px_35px_rgba(0,0,0,0.3)] lg:-bottom-7 lg:left-81 rounded-4xl bg-[linear-gradient(90deg,#000000,#1584bb)] w-[350px] h-[250px] xl:h-[250px] xl:w-[349px] z-1",
+        svg: <CiClock2 size={30} className="text-white hidden lg:block" />,
         title: "WORKING HOURS",
         description: `MONDAY TO SUNDAY 
 `,
         number: "8AM - 7PM"
     },
     {
-        design: "p-4 pl-9 pt-5 absolute shadow-2xl drop-shadow-[0_35px_35px_rgba(0,0,0,0.3)] -right-84 top-10 rounded-4xl bg-[linear-gradient(90deg,#000000,#1584bb)] h-[250px] w-[349px]",
-        svg: <PiHeadset size={30} className="text-white" />,
+        design: "p-4 md:p-4 md:pl-9 md:pt-5 lg:absolute shadow-2xl drop-shadow-[0_35px_35px_rgba(0,0,0,0.3)] lg:right-5 lg:top-10 rounded-4xl bg-[linear-gradient(90deg,#000000,#1584bb)] w-[350px] h-[250px] xl:h-[250px] xl:w-[349px]",
+        svg: <PiHeadset size={30} className="text-white hidden lg:block" />,
         title: "COMMUNICATION",
         description: "bilmagic5@gmail.com",
         number: "09192305994"
@@ -37,8 +37,8 @@ TAGUIG, PHILIPPINES`
 
 export default function Contactpage() {
     return (
-        <div id="contact" className="h-screen w-full flex flex-col">
-            <div className="relative h-[90vh] flex items-center p-4 pt-12">
+        <div id="contact" className="min-h-screen w-full flex flex-col">
+            <div className="relative h-[90vh] flex flex-col lg:flex-row items-center p-4 pt-12">
                 <div className="relative flex justify-center w-[900px] z-1">
                     <motion.div 
                     variants={fadeIn("up", 0)}
@@ -51,7 +51,8 @@ export default function Contactpage() {
                     initial="hidden"
                     whileInView="show"
                     viewport={{ once: false, amount: 0.1 }} 
-                    className="absolute -bottom-15 right-10 rounded-full bg-[linear-gradient(90deg,#000000,#1584bb)] h-[180px] w-[180px] -z-1"></motion.div>
+                    className="absolute -bottom-15 right-10 rounded-full bg-[linear-gradient(90deg,#000000,#1584bb)] h-[180px] w-[180px] -z-1 hidden lg:block"></motion.div>
+                    
                     <motion.iframe
                     variants={fadeIn("down", 0)}
                     initial="hidden"
@@ -64,6 +65,7 @@ export default function Contactpage() {
                         allowFullScreen
                         loading="lazy"
                         referrerPolicy="no-referrer-when-downgrade"
+                        className="h-[350px] w-[350px] md:w-[650px] lg:w-[650px] lg:h-[550px]"
                     ></motion.iframe>
                 </div>
                 <div className="absolute text-3xl opacity-50 shadow-2xl  top-30 rounded-full right-220 text-white font-bold" style={{ fontFamily: "var(--font-antonio)" }}>CONTACT US</div>
@@ -89,21 +91,21 @@ export default function Contactpage() {
                 initial="hidden"
                 whileInView="show"
                 viewport={{ once: false, amount: 0.1 }} 
-                className="flex relative items-center h-[500px] w-[500px] justify-center">
+                className="flex flex-row md:flex-row gap-5 p-4 relative items-center h-[500px] w-[500px] md:w-[900px] justify-center">
                     {Details.map((details, index) => (
                         <div
                             key={index} className={details.design}>
                             {details.svg}
-                            <h1 className="text-white font-bold pt-2 mt-2 mb-2" style={{ fontFamily: "var(--font-roboto)" }}>{details.title}</h1>
-                            <p className="pt-5 text-white" style={{ fontFamily: "var(--font-roboto)" }}>{details.description}</p>
+                            <h1 className="text-white font-bold xl:pt-2 xl:mt-2 xl:mb-2" style={{ fontFamily: "var(--font-roboto)" }}>{details.title}</h1>
+                            <p className="xl:pt-5 text-white text-sm lg:text-lg" style={{ fontFamily: "var(--font-roboto)" }}>{details.description}</p>
                             <p className="text-white" style={{ fontFamily: "var(--font-roboto)" }}>{details.number}</p>
                         </div>
                     ))}
                 </motion.div>
             </div>
             <footer className="h-[10vh] bg-[linear-gradient(90deg,#000000,#1584bb)] flex justify-between relative z-2">
-                <p className=" text-white uppercase pl-20 pt-4 text-2xl " style={{ fontFamily: "var(--font-dm-sans)" }}>Get in touch with us</p>
-                <div className="flex flex-col pr-13 pt-3">
+                <p className=" text-white uppercase lg:pl-20 lg:pt-4 text-2xl " style={{ fontFamily: "var(--font-dm-sans)" }}>Get in touch with us</p>
+                <div className="flex flex-col lg:pr-13 lg:pt-3">
                     <p className="text-white text-2xl" style={{ fontFamily: "var(--font-dm-sans)" }}>FOLLOW US</p>
                     <div className="flex pt-1 gap-2">
                         <CiFacebook className="text-white" size={20} />

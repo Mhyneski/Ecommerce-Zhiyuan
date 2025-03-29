@@ -1,6 +1,7 @@
 "use client"
 import { useState } from "react";
 import { Link } from 'react-scroll';
+import Link2 from "next/link"
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, ChevronDown } from "lucide-react";
 
@@ -127,19 +128,16 @@ export default function Navbar() {
                 >
                   <div className="py-2">
                     {item.dropdown.map((subItem, subIndex) => (
-                      <Link
-                        key={subIndex}
-                        to={subItem.loc}
-                        className={`block px-6 py-3 hover:bg-[#34495E]/20 transition-colors duration-300 text-white ${
-                          active === subItem.title ? 'bg-gray-600 bg-opacity-50' : ''
-                        }`}
-                        onClick={() => {
-                          setActive(subItem.title);
-                          setShopDropdownOpen(false);
-                        }}
-                      >
-                        {subItem.title}
-                      </Link>
+                     <Link2
+                     href={subItem.loc} // ✅ Next.js Link for page navigation
+                     className="block px-6 py-3 hover:bg-[#34495E]/20 transition-colors duration-300 text-white"
+                     onClick={() => {
+                       setActive(subItem.title);
+                       setShopDropdownOpen(false);
+                     }}
+                   >
+                     {subItem.title}
+                   </Link2>
                     ))}
                   </div>
                 </motion.div>

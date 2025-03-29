@@ -72,18 +72,18 @@ export default function Aboutpage() {
         initial="hidden"
         whileInView="show"
         viewport={{ once: false, amount: 0.1 }}
-        className="grid grid-cols-1 md:grid-cols-12 mt-20 md:gap-35 md:-ml-93 md:mt-35 max-w-6xl px-4">
+        className="grid grid-cols-1 lg:grid-cols-12 mt-20 gap-5 lg:gap-10 xl:gap-20 3xl:gap-35 3xl:-ml-93 md:mt-35 max-w-6xl px-4">
 
         {Details.map((detail, index) => (
           <div
             key={index}
-            className={`relative md:col-span-4 h-[450px] w-[365px] p-6 rounded-3xl shadow-2xl drop-shadow-[0_35px_35px_rgba(0,0,0,0.3)] ${detail.color} flex flex-col items-center text-center hover:scale-130 transition-all duration-300 ease-in-out`}>
+            className={`relative md:col-span-4 h-[350px] lg:h-[400px] xl:h-[450px] 3xl:w-[365px] p-6 rounded-3xl shadow-2xl drop-shadow-[0_35px_35px_rgba(0,0,0,0.3)] ${detail.color} flex flex-col items-center text-center hover:scale-130 transition-all duration-300 ease-in-out`}>
             <img
               src={detail.image}
               alt="Billiard Ball"
-              className="absolute -top-44 hover:scale-110 transition-all duration-300 ease-in-out w-50 h-85 object-cover"
+              className="absolute 2xl:-top-44 hover:scale-110 transition-all duration-300 ease-in-out hidden 2xl:block 2xl:w-50 2xl:h-85 object-cover"
             />
-            <p className={`mt-20 ${detail.size} font-medium text-white ${detail.width} text-left`} style={{ fontFamily: "var(--font-dm-sans)" }}>
+            <p className={`2xl:mt-20 ${detail.size} font-medium text-white ${detail.width} text-left`} style={{ fontFamily: "var(--font-dm-sans)" }}>
               {detail.description}
             </p>
           </div>
