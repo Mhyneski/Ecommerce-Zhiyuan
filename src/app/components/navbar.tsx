@@ -1,36 +1,42 @@
 "use client"
 import { useState } from "react";
-import { Link } from 'react-scroll';
-import Link2 from "next/link"
+import { Link as ScrollLink } from 'react-scroll';
+import Link from "next/link"
+import { usePathname } from 'next/navigation';
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, ChevronDown } from "lucide-react";
 
 export default function Navbar() {
-  const [active, setActive] = useState("HOME");
   const [menuOpen, setMenuOpen] = useState(false);
   const [shopDropdownOpen, setShopDropdownOpen] = useState(false);
+  const pathname = usePathname();
+
+  const isHomePage = pathname === '/';
 
   const menuItems = [
     {
       title: "HOME",
-      loc: "home"
+      href: "/",
+      scrollTo: "home"
     }, 
     {
       title: "ABOUT US",
-      loc: "about"
+      href: isHomePage ? "#" : "/#about",
+      scrollTo: "about"
     }, 
     {
       title: "SHOP",
-      loc: "/shop",
+      href: "/shop",
       dropdown: [
-        { title: "PERI", loc: "/shop/peri" },
-        { title: "KONLLEN", loc: "/shop/konllen" },
-        { title: "BILMAGIC", loc: "/shop/bilmagic" }
+        { title: "PERI", href: "/shop/peri" },
+        { title: "KONLLEN", href: "/shop/konllen" },
+        { title: "BILMAGIC", href: "/shop/bilmagic" }
       ]
     }, 
     {
       title: "CONTACT US",
-      loc: "contact"
+      href: isHomePage ? "#" : "/#contact",
+      scrollTo: "contact"
     }
   ];
 
@@ -69,25 +75,33 @@ export default function Navbar() {
     setShopDropdownOpen(!shopDropdownOpen);
   };
 
+  const handleNavItemClick = () => {
+    setMenuOpen(false);
+    setShopDropdownOpen(false);
+  };
+
   return (
     <motion.div
       variants={navVariants}
       initial="hidden"
       animate="show"
-      className="fixed w-full bg-opacity-80 backdrop-blur-md md:backdrop-blur-none z-50"
+      className="fixed w-full bg-opacity-80  z-50"
       onClick={() => setShopDropdownOpen(false)}
     >
       <div className="flex items-center justify-between px-6 md:px-10 py-4">
-        <img
-          src="../images/bilmagicLogo.png"
-          alt="Bilmagic Logo"
-          className="h-[50px] object-cover w-auto"
-        />
+        <Link href="/">
+          <img
+            src="/images/bilmagicLogo.png"
+            alt="Bilmagic Logo"
+            className="h-[50px] object-cover w-auto cursor-pointer"
+          />
+        </Link>
 
+        {/* Desktop Navigation */}
         <nav className="hidden md:flex flex-1 -ml-35 justify-center space-x-20">
-          {menuItems.map((item, index) => (
+          {menuItems.map((item) => (
             <div 
-              key={index} 
+              key={item.title} 
               className="relative group"
               onClick={(e) => {
                 if (item.title === "SHOP") {
@@ -97,17 +111,29 @@ export default function Navbar() {
               }}
             >
               <div className="flex items-center">
-                <Link
-                  to={item.loc}
-                  className={`text-white text-lg font-medium cursor-pointer px-3 py-1 rounded-md transition-colors duration-300 ${
-                    active === item.title ? 'bg-gray-300/50' : 'hover:bg-gray-300/70 transition-all duration-400 ease-in-out'
-                  }`}
-                  onClick={() => setActive(item.title)}
-                  smooth={true} 
-                  duration={500}
-                >
-                  {item.title}
-                </Link>
+                {isHomePage && item.scrollTo ? (
+                  <ScrollLink
+                    to={item.scrollTo}
+                    className={`text-white text-lg font-medium cursor-pointer px-3 py-1 rounded-md transition-colors duration-300 ${
+                      pathname === item.href ? 'bg-gray-300/50' : 'hover:bg-gray-300/70'
+                    }`}
+                    smooth={true}
+                    duration={500}
+                    onClick={handleNavItemClick}
+                  >
+                    {item.title}
+                  </ScrollLink>
+                ) : (
+                  <Link
+                    href={item.href}
+                    className={`text-white text-lg font-medium cursor-pointer px-3 py-1 rounded-md transition-colors duration-300 ${
+                      pathname === item.href ? 'bg-gray-300/50' : 'hover:bg-gray-300/70'
+                    }`}
+                    onClick={handleNavItemClick}
+                  >
+                    {item.title}
+                  </Link>
+                )}
                 {item.dropdown && (
                   <ChevronDown 
                     size={20} 
@@ -127,17 +153,15 @@ export default function Navbar() {
                   className="absolute top-full left-1/2 transform -translate-x-1/2 mt-2 bg-[#0b3452]/40 text-center bg-opacity-30 backdrop-blur-lg rounded-lg shadow-lg w-[200px] cursor-pointer"
                 >
                   <div className="py-2">
-                    {item.dropdown.map((subItem, subIndex) => (
-                     <Link2
-                     href={subItem.loc} // ✅ Next.js Link for page navigation
-                     className="block px-6 py-3 hover:bg-[#34495E]/20 transition-colors duration-300 text-white"
-                     onClick={() => {
-                       setActive(subItem.title);
-                       setShopDropdownOpen(false);
-                     }}
-                   >
-                     {subItem.title}
-                   </Link2>
+                    {item.dropdown.map((subItem) => (
+                      <Link
+                        key={subItem.title}
+                        href={subItem.href}
+                        className="block px-6 py-3 hover:bg-[#34495E]/20 transition-colors duration-300 text-white"
+                        onClick={handleNavItemClick}
+                      >
+                        {subItem.title}
+                      </Link>
                     ))}
                   </div>
                 </motion.div>
@@ -146,6 +170,7 @@ export default function Navbar() {
           ))}
         </nav>
 
+        {/* Mobile menu button */}
         <button
           className="md:hidden text-white focus:outline-none"
           onClick={() => setMenuOpen(!menuOpen)}
@@ -154,32 +179,46 @@ export default function Navbar() {
         </button>
       </div>
 
-      {/* Mobile menu remains the same */}
-      {menuOpen && (
-        <motion.div
-          initial={{ y: -20, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          exit={{ y: -20, opacity: 0 }}
-          transition={{ duration: 0.3, ease: "easeInOut" }}
-          className="md:hidden bg-opacity-90 p-4 flex flex-col items-center space-y-4"
-        >
-          {menuItems.map((item, index) => (
-            <Link
-              key={index}
-              to={item.loc}
-              className={`text-white text-lg font-medium px-3 py-1 rounded-md transition-colors duration-300 ${
-                active === item.title ? 'bg-gray-600 bg-opacity-50' : 'hover:bg-gray-600 hover:bg-opacity-30'
-              }`}
-              onClick={() => {
-                setActive(item.title);
-                setMenuOpen(false);
-              }}
-            >
-              {item.title}
-            </Link>
-          ))}
-        </motion.div>
-      )}
+      {/* Mobile Menu */}
+      <AnimatePresence>
+        {menuOpen && (
+          <motion.div
+            initial={{ y: -20, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            exit={{ y: -20, opacity: 0 }}
+            transition={{ duration: 0.3, ease: "easeInOut" }}
+            className="md:hidden bg-opacity-90 p-4 flex flex-col items-center space-y-4"
+          >
+            {menuItems.map((item) => (
+              <div key={item.title} className="w-full text-center">
+                {isHomePage && item.scrollTo ? (
+                  <ScrollLink
+                    to={item.scrollTo}
+                    className={`text-white text-lg font-medium px-3 py-1 rounded-md transition-colors duration-300 ${
+                      pathname === item.href ? 'bg-gray-600 bg-opacity-50' : 'hover:bg-gray-600 hover:bg-opacity-30'
+                    }`}
+                    onClick={handleNavItemClick}
+                    smooth={true}
+                    duration={500}
+                  >
+                    {item.title}
+                  </ScrollLink>
+                ) : (
+                  <Link
+                    href={item.href}
+                    className={`text-white text-lg font-medium px-3 py-1 rounded-md transition-colors duration-300 ${
+                      pathname === item.href ? 'bg-gray-600 bg-opacity-50' : 'hover:bg-gray-600 hover:bg-opacity-30'
+                    }`}
+                    onClick={handleNavItemClick}
+                  >
+                    {item.title}
+                  </Link>
+                )}
+              </div>
+            ))}
+          </motion.div>
+        )}
+      </AnimatePresence>
     </motion.div>
   );
 }

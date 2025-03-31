@@ -6,11 +6,17 @@ const FerrisWheel = () => {
     // Sample items - replace with actual product images
     const items = [
         { name: "Playing Cue", image: "/images/3ball.png" },
-        { name: "Tip", image: "/images/8ball.png" },
-        { name: "Chalk", image: "/images/10ball.png" },
-        { name: "Case", image: "/images/crical.png" },
-        { name: "Bridge", image: "/images/ongod.png" },
-        { name: "Glove", image: "/images/rack.png" },
+        { name: "BREAK CUE", image: "/images/8ball.png" },
+        { name: "JUMP CUE", image: "/images/10ball.png" },
+        { name: "JUMP BREAK CUE", image: "/images/crical.png" },
+        { name: "BATT", image: "/images/ongod.png" },
+        { name: "SHAFT", image: "/images/rack.png" },
+        { name: "BAG / CASE", image: "/images/rack.png" },
+        { name: "CUE EXTENSION", image: "/images/rack.png" },
+        { name: "CUE TIP", image: "/images/rack.png" },
+        { name: "CHALK", image: "/images/rack.png" },
+        { name: "GLOVES", image: "/images/rack.png" },
+        { name: "ACCESSORIES / TOOLS", image: "/images/rack.png" },
     ];
 
     const [activeIndex, setActiveIndex] = useState(0);
@@ -73,7 +79,7 @@ const FerrisWheel = () => {
                             }}
                             exit={{
                                 x: pos.x * 1.5,
-                                y: pos.y + 200, // Move down when exiting
+                                y: pos.y + 200, 
                                 opacity: 0,
                                 scale: 0.5,
                             }}
