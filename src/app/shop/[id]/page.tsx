@@ -3,29 +3,25 @@ import { useParams } from "next/navigation";
 import FerrisWheel from "./ferrishwheel";
 import Navbar from '../../components/navbar'
 import Link from "next/link";
-
+import billiardData from "../../../json/billiard.json"
 
 const ShopBrandPage = () => {
   const { id } = useParams();
 
-  const brandsData = {
-    peri: { name: "Peri", items: ["Item A", "Item B"] },
-    bilmagic: { name: "Bilmagic", items: ["Item C", "Item D"] },
-    konllen: { name: "Konllen", items: ["Item E", "Item F"] },
-  };
+  const Brand = billiardData.find(item => item.brand.toLowerCase() === id);
 
-  const brand = brandsData[id as keyof typeof brandsData] || {
-    name: "Unknown Brand",
-    items: [],
-  };
+  console.log(Brand)
 
+  if (!Brand) {
+    return <div>Brand not found</div>;
+  }
   return (
     <>
     <Navbar />
     <div className="min-h-screen flex items-center justify-between bg-[linear-gradient(90deg,#000000,#1584bb)] overflow-hidden">
       <div className="flex flex-col gap-5 ml-50">
         <div className="relative h-10">
-          <h1 className="text-[13rem] tracking-tighter absolute -top-35 -left-25 font-bold text-white opacity-30 uppercase" style={{ fontFamily: "var(--font-antonio)" }}>{brand.name}</h1>
+          <h1 className="text-[13rem] tracking-tighter absolute -top-35 -left-25 font-bold text-white opacity-30 uppercase" style={{ fontFamily: "var(--font-antonio)" }}>{Brand.brand}</h1>
         </div>
         <h1 className="text-white text-5xl font-bold" style={{ fontFamily: "var(--font-dm-sans)" }}>SHOP</h1>
         <h1 className="text-white text-5xl font-bold" style={{ fontFamily: "var(--font-dm-sans)" }}>BY CATEGORIES</h1>
