@@ -26,7 +26,7 @@ export default function Navbar() {
     }, 
     {
       title: "SHOP",
-      href: "/shop",
+      href: "/shop/peri",
       dropdown: [
         { title: "PERI", href: "/shop/peri" },
         { title: "KONLLEN", href: "/shop/konllen" },

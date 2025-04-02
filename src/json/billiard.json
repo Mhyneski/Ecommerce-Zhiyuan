@@ -4,9 +4,9 @@
         "brand": "Peri",
         "Categories": [
             {
-                "name": "Playing Cue",
+                "name": "PLAYING CUE",
                 "slug": "playing-cue",
-                "image": "/images/3ball.png",
+                "image": "/images/playingcue.png",
                 "Brands": [
                     {
                         "Name": "BARON SERIES",
@@ -884,47 +884,47 @@
             },
             {
                 "name": "BREAK CUE",
-                "image": "/images/8ball.png"
+                "image": "/images/breakcue.png"
             },
             {
                 "name": "JUMP CUE",
-                "image": "/images/10ball.png"
+                "image": "/images/jumpcue.png"
             },
             {
                 "name": "JUMP BREAK CUE",
-                "image": "/images/crical.png"
+                "image": "/images/jumpbreakcue.png"
             },
             {
                 "name": "BATT",
-                "image": "/images/ongod.png"
+                "image": "/images/batt.png"
             },
             {
                 "name": "SHAFT",
-                "image": "/images/rack.png"
+                "image": "/images/shaft.png"
             },
             {
                 "name": "BAG / CASE",
-                "image": "/images/rack.png"
+                "image": "/images/bagcase.png"
             },
             {
                 "name": "CUE EXTENSION",
-                "image": "/images/rack.png"
+                "image": "/images/cueext.png"
             },
             {
                 "name": "CUE TIP",
-                "image": "/images/rack.png"
+                "image": "/images/cuetip.png"
             },
             {
                 "name": "CHALK",
-                "image": "/images/rack.png"
+                "image": "/images/chalk.png"
             },
             {
                 "name": "GLOVES",
-                "image": "/images/rack.png"
+                "image": "/images/gloves.png"
             },
             {
                 "name": "ACCESSORIES / TOOLS",
-                "image": "/images/rack.png"
+                "image": "/images/accesories.png"
             }
         ]
     },

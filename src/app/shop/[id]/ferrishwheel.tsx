@@ -3,20 +3,19 @@ import { motion } from "framer-motion";
 
 // Ferris Wheel Component
 const FerrisWheel = () => {
-    // Sample items - replace with actual product images
     const items = [
-        { name: "Playing Cue", image: "/images/3ball.png" },
-        { name: "BREAK CUE", image: "/images/8ball.png" },
-        { name: "JUMP CUE", image: "/images/10ball.png" },
-        { name: "JUMP BREAK CUE", image: "/images/crical.png" },
-        { name: "BATT", image: "/images/ongod.png" },
-        { name: "SHAFT", image: "/images/rack.png" },
-        { name: "BAG / CASE", image: "/images/rack.png" },
-        { name: "CUE EXTENSION", image: "/images/rack.png" },
-        { name: "CUE TIP", image: "/images/rack.png" },
-        { name: "CHALK", image: "/images/rack.png" },
-        { name: "GLOVES", image: "/images/rack.png" },
-        { name: "ACCESSORIES / TOOLS", image: "/images/rack.png" },
+        { name: "Playing Cue", image: "/images/playingcue.png" },
+        { name: "BREAK CUE", image: "/images/breakcue.png" },
+        { name: "JUMP CUE", image: "/images/jumpcue.png" },
+        { name: "JUMP BREAK CUE", image: "/images/jumpbreakcue.png" },
+        { name: "BATT", image: "/images/batt.png" },
+        { name: "SHAFT", image: "/images/shaft.png" },
+        { name: "BAG / CASE", image: "/images/bagcase.png" },
+        { name: "CUE EXTENSION", image: "/images/cueext.png" },
+        { name: "CUE TIP", image: "/images/cuetip.png" },
+        { name: "CHALK", image: "/images/chalk.png" },
+        { name: "GLOVES", image: "/images/gloves.png" },
+        { name: "ACCESSORIES / TOOLS", image: "/images/accesories.png" },
     ];
 
     const [activeIndex, setActiveIndex] = useState(0);
@@ -95,23 +94,26 @@ const FerrisWheel = () => {
                             }}
                         >
                             <div
-                                className="bg-gray-400/70 rounded-xl p-4 shadow-lg flex items-center justify-center"
+                                className="bg-gradient-to-b from-[#a6a6a6b3] to-[#ffffffb3] rounded-4xl p-4 shadow-lg flex flex-col items-center justify-center"
                                 style={{
-                                    width: "200px",
-                                    height: "200px",
+                                    width: "290px",
+                                    height: "260px",
                                 }}
                             >
+                                {pos.visible && (
+                                <div className="flex justify-start text-lg  w-full text-white uppercase mb-3 pl-4" style={{ fontFamily: "var(--font-roboto)" }}>
+                                    {item.name}
+                                </div>
+                            )}
+                            <div className="h-full">
                                 <img
                                     src={item.image}
                                     alt={item.name}
                                     className="max-w-full max-h-full object-contain"
                                 />
-                            </div>
-                            {pos.visible && (
-                                <div className="absolute top-full left-1/2 transform -translate-x-1/2 mt-2 text-white font-medium text-center whitespace-nowrap">
-                                    {item.name}
                                 </div>
-                            )}
+                            </div>
+                            
                         </motion.div>
                     );
                 })}
